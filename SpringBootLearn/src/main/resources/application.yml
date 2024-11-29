@@ -1,0 +1,20 @@
+---
+foodConfig:
+  # 蔬菜：使用单引号 所有的内容都被当做音通文本，不转义
+  vegetable: 'Cucumber'
+  # 水果：使用双引号 中有\n则会被转义为接行符
+  fruit: "Apple"
+  # 肉类
+  meat: Beef
+  # 谷物
+  grain: Rice
+
+---
+info: 这个符号下面的配置可以认为是一个独立的yaml文件。便于庞大文件的阅读
+
+spring:
+  config:
+    import:
+      - classpath:/config/application-fruit01.yml
+      - classpath:/config/application-fruit02.yml
+#    import: [classpath:/config/application-fruit01.yml, classpath:/config/application-fruit02.yml]

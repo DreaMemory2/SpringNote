@@ -1,0 +1,9 @@
+fruit:
+  first:
+    # 橘子
+    citrus: Tangerine
+    # 黄元帅: 金冠苹果
+    apple: GoldenDelicious
+    grape: 青提
+    # 西瓜
+    melon: watermelon

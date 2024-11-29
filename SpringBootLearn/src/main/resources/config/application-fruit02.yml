@@ -1,0 +1,8 @@
+fruit:
+  second:
+    # 柚子
+    citrus: Grapefruit
+    # 青苹果
+    apple: GreenApple
+    grape: 红提
+    melon: 哈密瓜

@@ -1,6 +1,5 @@
 package com.crystal.learn;
 
-import com.crystal.learn.bean.User;
 import com.crystal.learn.service.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
@@ -27,8 +26,8 @@ import java.util.Date;
  * 作用: SpringBoot应用会去类路径当中查找class，根据类路径当中的类来自动管理bean</p>
  * <p>{@link ComponentScan}: 代替xml配置(<context:component-scan base-packages="" />)。<br>
  * 扫描com.crystal.learn包下所有类名</p>
- * @author Crystal
  * @since 1.0.0
+ * @author Crystal
  */
 @SpringBootApplication
 public class FirstApplication {
@@ -36,6 +35,7 @@ public class FirstApplication {
      * <p>启动main方法，则启动Spring服务器</p>
      * <p> SpringApplication.run()方法: </p>
      * <p>1. 第一个参数: 输入配置类(对应配置文件)。自从配置类开始，加载所有的bean方法，而SpringApplication.class被成为起源</p>
+     * @param args 接收命令行参数的
      */
     public static void main(String[] args) {
         // 运行Spring应用程序

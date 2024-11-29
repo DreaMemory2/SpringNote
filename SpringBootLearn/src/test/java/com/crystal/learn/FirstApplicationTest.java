@@ -1,6 +1,7 @@
 package com.crystal.learn;
 
 import com.crystal.learn.bean.User;
+import com.crystal.learn.config.CodecConfig;
 import com.crystal.learn.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class FirstApplicationTest {
-
     @Autowired
-    public UserService userService;
+    private UserService userService;
+    @Autowired
+    private CodecConfig codecConfig;
 
     /**
      * 单元测试方法，且使用Test注解进行标注
@@ -22,5 +24,10 @@ public class FirstApplicationTest {
     public void test() {
         User user = userService.findUser();
         System.out.println(user);
+    }
+
+    @Test
+    public void configTest() {
+        codecConfig.decode();
     }
 }
