@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 依赖注入: Dependency Injection -->
+
+    <!-- 获取持久层dao中类，纳入IOC容器管理 -->
+    <bean id="userDao" class="com.stalight.crystal.dao.impl.UserDaoImpl" />
+    <bean id="vipDao" class="com.stalight.crystal.dao.impl.VipDaoImpl" />
+
+    <!-- 获取服务层service中的类，也纳入IOC容器管理 -->
+    <bean id="userService" class="com.stalight.crystal.service.impl.UserServiceImpl" >
+        <!-- 依赖注入之Set注入 -->
+        <!-- 调用UserService中的set方法，需要配置property标签 -->
+        <property name="userDao" ref="userDao" />
+
+        <!-- 依赖注入之构造注入 -->
+        <!--
+            index属性: 指定形式参数下标(可选)
+            ref属性: 用来指定注入bean的id
+            name属性: 用来指定构造方法中的形式参数名(可选)
+        -->
+        <!-- 指定构造方法的第一个形式参数，下标为0 -->
+        <constructor-arg index="0" ref="userDao" name="user" />
+        <!-- 指定构造方法的第二个形式参数，下标为1 -->
+        <constructor-arg index="1" ref="vipDao" name="vip" />
+    </bean>
+</beans>

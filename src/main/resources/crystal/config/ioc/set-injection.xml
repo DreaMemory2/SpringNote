@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <!-- Set注入专题 -->
+    <!-- 业务层 -->
+    <bean id="userDao" class="com.stalight.crystal.dao.impl.UserDaoImpl" />
+
+    <!-- 服务层 -->
+    <!-- 注入外部Bean -->
+    <bean id="userService" class="com.stalight.crystal.service.impl.UserServiceImpl" >
+        <!-- 声明/定义Bean -->
+        <!-- 使用ref属性，这就是注入外部Bean -->
+        <property name="userDao" ref="userDao" />
+    </bean>
+    <!-- 注入内部Bean -->
+    <bean id="userService2" class="com.stalight.crystal.service.impl.UserServiceImpl" >
+        <property name="userDao" >
+            <!-- 注入内部部Bean -->
+            <bean class="com.stalight.crystal.dao.impl.UserDaoImpl" />
+        </property>
+    </bean>
+
+    <!-- Bean配置 -->
+    <!-- Set注入之简单类型 -->
+    <bean id="user" class="com.stalight.crystal.bean.User" >
+        <!-- 重点：如果是给简单类型赋值，就不能使用ref，需要使用value -->
+        <!-- 测试有哪些是简单类型 -->
+        <!-- String类型 -->
+        <property name="name" value="张三" />
+        <!-- Int类型 -->
+        <property name="password" value="123" />
+        <!-- 枚举类型 -->
+        <property name="season" value="SPRING" />
+        <!-- Class类型 -->
+        <property name="clazz" value="com.stalight.crystal.bean.User" />
+        <!-- Date类型(当作简单类型) -->
+        <!-- "1970-11-10"无法转成java.util.Date类型 -->
+        <property name="born" value="Wed Oct 19 16:28:13 CST 2022" />
+    </bean>
+
+    <bean id="foods" class="com.stalight.crystal.bean.Foods">
+        <!-- Set注入之数组注入 -->
+        <!-- 这个数组属性当中的元素类型是String简单类型 -->
+        <property name="fruits" >
+            <array>
+                <value>苹果</value>
+                <value>香蕉</value>
+                <value>雪梨</value>
+            </array>
+        </property>
+        <!-- 这个数组属性当中的元素类型是Vegetable复杂类型 -->
+        <property name="vegetables" >
+            <array>
+                <ref bean="vegetableFruit" />
+                <ref bean="vegetableRoot" />
+                <ref bean="vegetableLaves" />
+            </array>
+        </property>
+
+        <!-- Set注入之List集合注入 -->
+        <property name="meats" >
+            <!--List集合有序可重复-->
+            <list>
+                <value>羊肉</value>
+                <value>牛肉</value>
+                <value>猪肉</value>
+                <value>鸡肉</value>
+            </list>
+        </property>
+
+        <!-- Set注入之Set集合注入 -->
+        <property name="grain" >
+            <set>
+                <value>小米</value>
+                <value>大米</value>
+                <value>红米</value>
+                <value>黑米</value>
+            </set>
+        </property>
+
+        <!-- Set注入之Map集合注入 -->
+        <property name="makes" >
+            <map>
+                <!-- 如果key和value是复杂类型 -->
+                <!--<entry key-ref="" value-ref="" />-->
+                <!-- 如果key和value是简单类型 -->
+                <entry key="炒饭" value="蛋炒饭" />
+                <entry key="点心" value="苹果蛋糕" />
+                <entry key="饮料" value="橘子饮料" />
+                <entry key="菜肴" value="茄子炖土豆" />
+            </map>
+        </property>
+    </bean>
+
+    <!-- Set注入之Properties集合注入 -->
+    <bean id="userProperties" class="com.stalight.crystal.bean.UserProperties" >
+        <!-- 注入Properties属性类对象 -->
+        <property name="properties" ref="properties" />
+    </bean>
+    <bean name="vegetableFruit" class="com.stalight.crystal.bean.Vegetable" >
+        <property name="fruits" value="茄子" />
+    </bean>
+    <bean name="vegetableRoot" class="com.stalight.crystal.bean.Vegetable" >
+        <property name="roots" value="土豆" />
+    </bean>
+    <bean name="vegetableLaves" class="com.stalight.crystal.bean.Vegetable" >
+        <property name="leaves" value="菠菜" />
+    </bean>
+
+    <!-- Set注入之注入Null和空字符串 -->
+    <bean id="vegetables" class="com.stalight.crystal.bean.Vegetable">
+        <!-- 第一种方式：不给属性注入，属性的默认值为null -->
+        <!-- 这个不是注入null，而是注入一个字符串"null" -->
+        <!--<property name="roots" value="null" />-->
+        <!-- 第二种方式：手动注入null -->
+        <property name="roots"><null /></property>
+        <!-- 第一种方式：注入空字符串 -->
+        <!--<property name="leaves" value="" />-->
+        <!-- 第二种方式：手动注入空字符串 -->
+        <property name="leaves"><value /></property>
+        <!-- 第一种方式：使用实体符号代替特殊符号 -->
+        <!--<property name="fruits" value="&lt;西红柿&gt;" />-->
+        <!-- 第二种方式：使用<![CDATA[]]> -->
+        <property name="fruits" >
+            <value><![CDATA[<西红柿>]]></value>
+        </property>
+    </bean>
+
+    <!-- P命名空间注入 -->
+    <!--
+        第一步：在spring的配置文件头部添加p命名空间，xmlns:p="http://www.springframework.org/schema/p"
+        第二步：使用p:属性名="属性值"
+    -->
+    <bean id="pNamespace" class="com.stalight.crystal.bean.Namespace" p:height="100" p:width="100" p:color-ref="color" />
+    <!-- 复杂类型 -->
+    <!-- C命名空间注入 -->
+    <!--
+        第一步：在spring的配置文件头部添加c命名空间，xmlns:c="http://www.springframework.org/schema/c"
+        第二步：使用c:形式参数名="形式参数值"
+    -->
+    <bean id="color" class="com.stalight.crystal.bean.Color" c:r="127" c:b="197" c:g="150" />
+
+    <!-- 引入util命名空间 -->
+    <!--
+        第一步：在spring的配置文件头部添加：
+        xmlns:util="http://www.springframework.org/schema/util"
+        xsi:schemaLocation="http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+        第二步：使用
+    -->
+    <util:properties id="properties">
+        <prop key="jdbc.driver">com.mysql.cj.jdbc.Driver</prop>
+        <prop key="jdbc.URL">jdbc:mysql://localhost:3306/spring6</prop>
+        <prop key="jdbc.user">root</prop>
+        <prop key="jdbc.password">123</prop>
+    </util:properties>
+</beans>

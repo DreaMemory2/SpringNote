@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 基于XML的自动装配 -->
+    <!-- Spring还可以完成自动化的注入，自动化注入又被称为自动装配。它可以根据名字进行自动装配，也可以根据类型进行自动装配 -->
+    <!-- 根据名字进行自动装配 -->
+    <!-- 注意：自动装配也是基于set方式实现的 -->
+    <bean id="userService" class="com.stalight.crystal.service.impl.UserServiceImpl" autowire="byName" />
+    <!-- 根据名字进行自动装配，被注入对象得bean的id不能随便写，需要根据set方法的方法名，去Set，剩下单词首字母小写即可 -->
+    <bean id="userDao" class="com.stalight.crystal.dao.impl.UserDaoImpl" /> <!-- id一般叫做bean的名称 -->
+
+    <!-- 根据类型进行自动装配 -->
+    <!-- 注意：自动装配也是基于set方式实现的 -->
+    <!-- 根据类型进行自动装配的时候，在有效配置文件当中，某种类型的实例只能有一个 -->
+    <bean id="vipDao" class="com.stalight.crystal.dao.impl.VipDaoImpl" />
+    <bean id="userService01" class="com.stalight.crystal.service.impl.UserServiceImpl" autowire="byType" />
+
+</beans>

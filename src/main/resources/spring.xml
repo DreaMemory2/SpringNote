@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 引入外部的properties文件
+        第一步：引入context命名空间
+        第二步：使用标签context:property-placeholder的location属性来指定属性配置文件的路径
+        location默认从类的根路径下开始加载资源
+        第三步：使用${key}，以键值对方式赋值
+    -->
+    <!-- 引入外部的jdbc.properties配置文件 -->
+    <context:property-placeholder location="crystal/jdbc.properties" />
+    <!-- 配置数据源 -->
+    <bean id="data" class="com.stalight.crystal.jdbc.MyDataSource" p:driver="${jdbc.driver}" p:url="${jdbc.URL}" p:username="${jdbc.user}" p:password="${jdbc.password}"/>
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- Spring 配置文件 -->
+
+    <!-- 配置beans，管理bean对象，其中id表示唯一标识符，class表示类名 -->
+    <bean id="user" class="com.stalight.crystal.bean.User">
+        <!-- String类型 -->
+        <property name="name" value="张三" />
+        <!-- Int类型 -->
+        <property name="password" value="123" />
+        <!-- 枚举类型 -->
+        <property name="season" value="SPRING" />
+        <!-- Class类型 -->
+        <property name="clazz" value="com.stalight.crystal.bean.User" />
+        <!-- 如果Date作为简单类型，格式为默认值 -->
+        <property name="born" value="Wed Oct 19 16:28:13 CST 2022" />
+    </bean>
+
+    <!-- 使用Spring来管理数据源 -->
+    <bean id="dataSource" class="com.stalight.crystal.jdbc.MyDataSource" >
+        <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/spring6" />
+        <property name="username" value="root" />
+        <property name="password" value="123" />
+    </bean>
+</beans>
