@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Bean作用域之单例和多例 -->
+    <!-- scope: 第一值为singleton(单例/默认情况下就是单例), 第二值为prototype(原型/多例) -->
+    <!-- scope有其他值，但必须要求项目是web应用，需要引入springmvc框架
+        request: 一次请求当中一个bean
+        session: 一次会话中只有一个bean
+     -->
+    <bean id="springBean" name="springBean" class="com.stalight.crystal.bean.SpringBean" scope="prototype" />
+</beans>

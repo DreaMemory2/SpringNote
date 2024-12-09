@@ -43,6 +43,13 @@
             <version>2.20.0</version>
         </dependency>
 
+        <!-- 引进web框架，例如springMVC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>6.1.14</version>
+        </dependency>
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>

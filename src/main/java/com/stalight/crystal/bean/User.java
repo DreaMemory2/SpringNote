@@ -1,5 +1,6 @@
 package com.stalight.crystal.bean;
 
+import com.stalight.crystal.CrystalMod;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -20,7 +21,7 @@ import java.util.Date;
  *     <li>Class</li>
  *     <li>另外还包括以上简单类型对应的数组类型</li>
  * </ul>
- *
+ * @version 2.0
  * @see org.springframework.util.ClassUtils#isSimpleValueType(Class) ClassUtils是否为简单类型
  */
 @Component("user")
@@ -50,8 +51,11 @@ public class User {
 
     /**
      * <p>默认情况下，Spring通过反射机制，调用类的无参数构造方法</p>
+     * <p>Bean的实例化第一种方式</p>
+     * @since 1.0
      */
     public User() {
+        CrystalMod.LOGGER.info("Spring Bean User 无参数构造方法执行");
         // Class.forName().newInstance();
     }
 

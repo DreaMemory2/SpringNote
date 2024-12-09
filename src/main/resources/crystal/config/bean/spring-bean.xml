@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Spring提供的实例化方式，第一种：在spring配置文件中直接配置类路径，Spring会自动调用无参数构造方法实例化Bean -->
+    <bean name="user01" class="com.stalight.crystal.bean.User" />
+
+    <!-- Spring提供的实例化方式，第二种：通过简单工厂模式调用类的工厂静态方法 -->
+    <!-- factory-method 属性指定的是工厂类当中的静态方法，来调用这个方法获取Bean对象 -->
+    <bean name="user02" class="com.stalight.crystal.factory.bean.UserFactory" factory-method="getUserBean" />
+
+    <!-- Spring提供的实例化方式，第三种：通过工厂方法模式。通过factory-bean属性 + factory-method属性来共同完成，来调用对象中的方法啊 -->
+    <bean id="swordFactory" class="com.stalight.crystal.factory.method.SwordFactory" />
+    <bean id="diamond-sword" factory-bean="swordFactory" factory-method="getToolItem" />
+
+    <!-- Spring提供的实例化方式，第四种：通过FactoryBean接口实现，它是第三种方式的简化形式 -->
+    <!-- 由于Factory实现FactoryBean接口，因此这个属于特殊类，通过特殊的Bean类来获取Bean Color对象 -->
+    <bean id="color" class="com.stalight.crystal.factory.bean.ColorFactory" />
+    <bean id="date" class="com.stalight.crystal.factory.bean.DateFactory" >
+        <constructor-arg index="0" value="2008-10-1" />
+    </bean>
+</beans>
