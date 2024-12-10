@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Bean的生命周期 -->
+    <bean id="bean01" class="com.stalight.crystal.bean.SpringBean" init-method="init" destroy-method="destroyBean">
+        <property name="bean" value="Bean" />
+    </bean>
+
+    <!-- Bean后处理器 -->
+    <!-- 注意：这个Bean后处理器将作用于整个配置文件中所有的Bean -->
+    <bean class="com.stalight.crystal.bean.processor.CommonProcessor" />
+</beans>

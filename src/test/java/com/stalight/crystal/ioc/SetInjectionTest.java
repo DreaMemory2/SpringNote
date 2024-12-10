@@ -59,7 +59,7 @@ public class SetInjectionTest {
         grains.printGrains();
         makes.printMakes();
         CrystalMod.LOGGER.info(properties.toString());
-        CrystalMod.LOGGER.info(vegetable.toString());
+        CrystalMod.LOGGER.info(vegetable.printVegetables());
     }
 
     /**

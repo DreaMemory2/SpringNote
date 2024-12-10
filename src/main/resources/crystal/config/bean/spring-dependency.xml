@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- singleton + setter模式下的循环依赖 -->
+    <!-- 在整个Spring容器当中是单例，只有唯一对象 -->
+    <!-- 原因：在这种模式下Spring对Bean的管理主要有两个阶段
+        第一个阶段：在Spring容器加载的时候，其中一个Bean实例化后，不等属性赋值立刻”曝光“
+        第二个阶段：在Bean”曝光“之后，再进行属性赋值(调用set方法)
+        解决方案：实例化Bean和属性赋值分为两个阶段进行
+        注意：只有scope在singleton的情况下，Bean才会采取提前"曝光"的措施
+     -->
+    <bean id="myBean" class="com.stalight.crystal.bean.dependency.MyBean" p:id="我的Bean" p:bean-ref="yourBean" />
+    <bean id="yourBean" class="com.stalight.crystal.bean.dependency.YourBean" p:id="你的Bean" p:bean-ref="myBean" />
+
+    <!-- prototype + setter模式下的循环依赖 -->
+    <!-- BeanCurrentlyInCreationException 当前的Bean正在处于创建中异常 -->
+    <!-- 如果其中一个Bean是singleton(单例)的，所以可以运行 -->
+    <!-- 注意：当两个Bean都是prototype的时候，才会出现异常，如果其中任意一个Bean是Singleton的，不会出现异常 -->
+    <bean id="myBean02" class="com.stalight.crystal.bean.dependency.MyBean" p:id="我的Bean" p:bean-ref="yourBean" scope="prototype" />
+    <bean id="yourBean02" class="com.stalight.crystal.bean.dependency.YourBean" p:id="你的Bean" p:bean-ref="myBean" />
+
+    <!-- singleton + 构造方法模式下的循环依赖  -->
+    <!-- BeanCurrentlyInCreationException 当前的Bean正在处于创建中异常 -->
+    <bean id="myBean03" class="com.stalight.crystal.bean.dependency.MyBean" c:id="我的Bean" c:bean-ref="yourBean03" />
+    <bean id="yourBean03" class="com.stalight.crystal.bean.dependency.YourBean" c:id="你的Bean" c:bean-ref="myBean03" />
+</beans>
