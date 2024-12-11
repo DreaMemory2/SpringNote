@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+    <bean id="user" class="com.stalight.crystal.bean.User" >
+        <property name="name" value="张三" />
+        <property name="password" value="123" />
+    </bean>
+
+    <bean id="vegetable" class="com.stalight.crystal.bean.Vegetable" >
+        <property name="fruits" value="茄子" />
+        <property name="leaves" value="油菜" />
+        <property name="roots" value="山药" />
+    </bean>
+
+</beans>
