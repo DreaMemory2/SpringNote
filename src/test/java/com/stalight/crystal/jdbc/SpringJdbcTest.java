@@ -115,11 +115,4 @@ public class SpringJdbcTest {
         int[] counts = jdbcTemplate.batchUpdate(sql, list);
         CrystalMod.LOGGER.info(Arrays.toString(counts));
     }
-
-    @Test
-    public void testCallback() {
-        // JdbcTemplate之批量添加
-        JdbcTemplate jdbcTemplate = CONTEXT.getBean("jdbcTemplate", JdbcTemplate.class);
-        // sql语句
-    }
 }
