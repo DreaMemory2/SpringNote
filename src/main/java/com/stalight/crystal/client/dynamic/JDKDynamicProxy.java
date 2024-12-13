@@ -6,8 +6,6 @@ import com.stalight.crystal.proxy.TimerInvocationHandler;
 import com.stalight.crystal.proxy.service.impl.OrderServiceImpl;
 import com.stalight.crystal.util.ProxyUtil;
 
-import java.lang.reflect.Proxy;
-
 /**
  * <p>客户端程序</p>
  * <p>GoF代理模式之JDK动态代理</p>
