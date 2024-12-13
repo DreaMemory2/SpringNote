@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 第一步：加入aop依赖 -->
+    <!-- 第二步：在配置文件中添加context命名空间依赖 -->
+    <!-- 第三步：在配置文件中指定扫描的包 -->
+    <!-- 第四步：在Bean类上使用注解 -->
+    <!-- 细节01：多个包，可以使用逗号隔开， 或者可以指定多个包共同的父包，但是减小一些效率 -->
+    <context:component-scan base-package="com.stalight.crystal.bean, com.stalight.crystal.bean.dependency, com.stalight.crystal.bean.processor" />
+    <!-- use-default-filters="false" 如果是false，表示com.stalight.crystal.bean包下所有的带有Bean的注解全部失效 -->
+    <context:component-scan base-package="com.stalight.crystal.bean" use-default-filters="false">
+        <!-- 只有@Component被包含进来，生效 -->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+    </context:component-scan>
+    <!-- use-default-filters="true" 如果是true，表示com.stalight.crystal.bean包下所有的带有Bean的注解全部生效 -->
+    <!-- 注意：use-default-filters="true" 默认值为true -->
+    <context:component-scan base-package="com.stalight.crystal.bean" >
+        <!-- @Repository注解生效 -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>
+
+    <!-- 持久层，标注@Repository注解 -->
+    <context:component-scan base-package="com.stalight.crystal.dao" />
+    <!-- 业务层，标注@Service注解 -->
+    <context:component-scan base-package="com.stalight.crystal.service" />
+    <!-- 表示层，标注@Controller注解 -->
+    <context:component-scan base-package="com.stalight.crystal.web" />
+</beans>

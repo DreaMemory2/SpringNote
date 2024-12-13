@@ -3,7 +3,15 @@ package com.stalight.crystal.dao.impl;
 import com.stalight.crystal.CrystalMod;
 import com.stalight.crystal.dao.VipDao;
 import com.stalight.crystal.web.UserAction;
+import org.springframework.stereotype.Repository;
 
+/**
+ * <p>如果@Repository没有指定value，默认为类名首字母变小写就是bean的名字</p>
+ * @author Crystal
+ * @version 1.0
+ * @since 1.0
+ */
+@Repository
 public class VipDaoImpl implements VipDao {
     /**
      * @param user 用户名

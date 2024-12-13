@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 配置自己的数据源 -->
+    <bean id="dataSource" class="com.stalight.crystal.jdbc.MyDataSource"
+          p:driver="com.mysql.cj.jdbc.Driver"
+          p:url="jdbc:mysql://localhost:3306/Crystal"
+          p:username="root"
+          p:password="159357ww"/>
+
+    <!-- 配置JdbcTemplate -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="dataSource" />
+</beans>

@@ -4,15 +4,33 @@ import com.stalight.crystal.dao.UserDao;
 import com.stalight.crystal.dao.VipDao;
 import com.stalight.crystal.service.UserService;
 import com.stalight.crystal.web.UserAction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>用户业务逻辑实现类，实现{@link UserService}接口</p>
+ * <p>业务层</p>
+ * @author Crystal
+ * @version 2.0
+ * @since 1.0
  */
+@Service("userService")
 public class UserServiceImpl implements UserService {
     /**
      * <p>业务层调用持久层</p>
+     * <p>可以注入复杂类型</p>
+     * <p>使用{@link Autowired @Autoeired}注解时，不需要指定任何属性，直接用即可</p>
+     * <p>并且这个注解根据类型byType进行自动装配</p>
+     * <p>解决以上问题：只能根据名字进行装配</p>
+     * <p>需要联合@Autowired和@Qualifier使用</p>
+     * @since 1.0
      */
+    @Autowired
+    @Qualifier("userDao")
     private UserDao user;
+    @Autowired
+    @Qualifier("vipDaoImpl")
     public VipDao vip;
 
     public UserServiceImpl() {

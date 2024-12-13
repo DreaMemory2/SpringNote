@@ -50,6 +50,19 @@
             <version>6.1.14</version>
         </dependency>
 
+        <!-- Spring JDBC依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>6.1.14</version>
+        </dependency>
+        <!-- Mysql驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
+        </dependency>
+
         <!-- dom4j是一个能够解析XML文件的java组件 -->
         <dependency>
             <groupId>org.dom4j</groupId>
@@ -62,10 +75,11 @@
             <version>1.2.0</version>
         </dependency>
 
+        <!--引入JavaEE依赖 -->
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>32.0.0-android</version>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>2.1.1</version>
         </dependency>
 
     </dependencies>

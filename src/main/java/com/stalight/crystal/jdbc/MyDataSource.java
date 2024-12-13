@@ -14,6 +14,11 @@ import java.util.logging.Logger;
  * <p>所有的数据元都要实现Java规范：{@link DataSource}</p>
  * <p>能够给你提供Connection对象，都是数据元</p>
  * <p>可以把数据元交给Spring容器来管理</p>
+ * <p>数据源存在为了提供Connection对象，只要实现DataSource接口都是数据源</p>
+ * <p>德鲁伊连接池、C30链接池、DBCP连接池，都实现DataSource接口</p>
+ * @version 2.0
+ * @since 1.0
+ * @author Crystal
  */
 public class MyDataSource implements DataSource {
     // 连接数据库的信息
@@ -29,6 +34,14 @@ public class MyDataSource implements DataSource {
 
     @Override
     public Connection getConnection() {
+        try {
+            // 注册驱动
+            Class.forName(driver);
+            // 获取数据库连接对象
+            return DriverManager.getConnection(url, username, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

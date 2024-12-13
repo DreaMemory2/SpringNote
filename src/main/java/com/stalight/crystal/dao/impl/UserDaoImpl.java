@@ -2,9 +2,15 @@ package com.stalight.crystal.dao.impl;
 
 import com.stalight.crystal.CrystalMod;
 import com.stalight.crystal.dao.UserDao;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component("userDao")
+/**
+ * <p>持久层</p>
+ * @author Crystal
+ * @version 1.0
+ * @since 1.0
+ */
+@Repository("userDao")
 public class UserDaoImpl implements UserDao {
     /**
      * 注销用户账号方法
