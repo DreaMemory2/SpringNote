@@ -1,7 +1,6 @@
 package com.stalight.crystal.web;
 
 import com.stalight.crystal.service.UserService;
-import com.stalight.crystal.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

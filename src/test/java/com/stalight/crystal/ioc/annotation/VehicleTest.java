@@ -51,8 +51,7 @@ public class VehicleTest {
         // 获取一个绝对路径下的所有文件
         File file = new File(urlPath);
         File[] files = file.listFiles();
-        Arrays.stream(Objects.requireNonNull(files)).forEach(f -> {
-            CrystalMod.LOGGER.info(f.getName());
-        });
+        Arrays.stream(Objects.requireNonNull(files)).forEach(f ->
+                CrystalMod.LOGGER.info(f.getName()));
     }
 }

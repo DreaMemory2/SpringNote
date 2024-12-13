@@ -1,12 +1,12 @@
 package com.stalight.crystal.jdbc;
 
+import jakarta.annotation.Nullable;
+
 import javax.sql.DataSource;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -33,6 +33,7 @@ public class MyDataSource implements DataSource {
     private Properties properties;
 
     @Override
+    @Nullable
     public Connection getConnection() {
         try {
             // 注册驱动
@@ -51,6 +52,7 @@ public class MyDataSource implements DataSource {
     }
 
     @Override
+    @Nullable
     public PrintWriter getLogWriter() {
         return null;
     }
@@ -71,11 +73,13 @@ public class MyDataSource implements DataSource {
     }
 
     @Override
+    @Nullable
     public Logger getParentLogger() {
         return null;
     }
 
     @Override
+    @Nullable
     public <T> T unwrap(Class<T> clazz) {
         return null;
     }
