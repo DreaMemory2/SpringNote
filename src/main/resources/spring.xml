@@ -16,4 +16,7 @@
     <context:property-placeholder location="crystal/jdbc.properties" />
     <!-- 配置数据源 -->
     <bean id="data" class="com.stalight.crystal.jdbc.MyDataSource" p:driver="${jdbc.driver}" p:url="${jdbc.URL}" p:username="${jdbc.user}" p:password="${jdbc.password}"/>
+
+    <!-- 在Spring核心配置文件中引入其他的子配置文件 -->
+    <import resource="classpath:crystal/spring-bean.xml" />
 </beans>
